@@ -1,0 +1,12 @@
+.ct-point {
+  stroke-width: 1px;
+}
+
+.ct-series-b .ct-line {
+  stroke-width: 1px;
+  stroke: lightgray;
+}
+
+.ct-series-a .ct-line {
+  stroke-width: 3px;
+}
