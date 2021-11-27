@@ -186,6 +186,29 @@ function hashrateChart(shares) {
       showLabel: true
     }
   })
+
+  displayShares(shares)
+}
+
+function displayShares(shares) {
+  let html = ''
+  for (let i = 0; i < shares.length; i++) {
+    const share = shares[i]
+    html += '<tr>'
+    html += '<td>'+share.main.height+'</td>'
+    html += '<td>'+share.height+'</td>'
+    html += '<td>'+blockToTime(share.height)+'</td>'
+    html += '<td>'+formatNumber(share.weight)+'</td>'
+    if (share.uncles && share.uncles.length > 0)
+      html += '<td>80% + 20% of '+share.uncles.length+' uncle(s)</td>'
+    else if (share.parent)
+      html += '<td>80% (uncle)</td>'
+    else
+      html += '<td>100%</td>'
+    
+    html += '</tr>'
+  }
+  document.getElementById('bodyShares').innerHTML = html
 }
 
 function displayPayouts(payouts) {
@@ -195,6 +218,7 @@ function displayPayouts(payouts) {
     html += '<tr>'
     html += '<td>'+payout.main.height+'</td>'
     html += '<td>'+payout.height+'</td>'
+    html += '<td>'+blockToTime(payout.height)+'</td>'
     html += '<td>'+payout.coinbase.reward/Math.pow(10,12)+' XMR</td>'
     html += '<td><a href="https://xmrchain.net/tx/'+payout.coinbase.id+'" target="_blank">'+payout.coinbase.id+'</a></td>'
     html += '<td><a href="https://www.exploremonero.com/receipt/'+payout.coinbase.id+'/'+minerAddress+'/'+payout.coinbase.private_key+'" target="_blank">'+payout.coinbase.private_key+'</td>'
@@ -313,6 +337,25 @@ function formatNumber(i) {
 function formatTime(t) {
   let diff = (new Date().getTime()/1000) - t
   let suffix = 'sec'
+  if (diff > 60) {
+    diff = Math.round(diff/60)
+    suffix = 'min'
+    if (diff > 60) {
+      diff = Math.round(diff/60)
+      suffix = 'hour'
+      if (diff > 24) {
+        diff = Math.round(diff/24)
+        suffix = 'day'
+      }
+    }
+  }
+  if (diff >= 2) suffix += 's'
+  return diff+' '+suffix+' ago'
+}
+
+function blockToTime(height) {
+  let diff = data.poolHeight - height
+  diff *= 10
   if (diff > 60) {
     diff = Math.round(diff/60)
     suffix = 'min'
