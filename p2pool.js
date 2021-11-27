@@ -1,6 +1,9 @@
 let apiUrl = 'https://p2pool.observer/api/'
-if (localStorage.getItem('isMini') == "true")
+if (localStorage.getItem('isMini') == "true") {
   apiUrl = 'https://mini.p2pool.observer/api/'
+  document.getElementById("checkboxApi").checked = true
+}
+
 let maxShares = 2160
 let maxPayouts = 10
 let data = {}
@@ -65,10 +68,10 @@ window.onhashchange = function(event) {
   router()
 }
 
-document.getElementById("checkboxApi").onchange = function(event) {
+document.getElementById("checkboxApi").addEventListener("change", function(event) {
   localStorage.setItem('isMini', event.target.checked)
-  window.location.reload()
-}
+  location.reload()
+})
 
 async function router() {
   let currentPage = location.hash.replace('#','')
