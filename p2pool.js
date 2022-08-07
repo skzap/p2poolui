@@ -22,9 +22,9 @@ const apiPoolInfo = async () => {
   data.curEffort = poolInfo.sidechain.effort.current.toFixed(2)+'%'
   data.pplnsBlocks = poolInfo.sidechain.window.blocks
   let localPool = await (await fetch (apiLocal+'stats')).json()
-  data.hashrate_15m = localPool.hashrate_15m+'h/s'
-  data.hashrate_1h = localPool.hashrate_1h+'h/s'
-  data.hashrate_24h = localPool.hashrate_24h+'h/s'
+  data.hashrate_15m = localPool.hashrate_15m+' h/s'
+  data.hashrate_1h = localPool.hashrate_1h+' h/s'
+  data.hashrate_24h = localPool.hashrate_24h+' h/s'
   data.total_hashes = localPool.total_hashes
   data.shares_found = localPool.shares_found
   data.average_effort = localPool.average_effort
