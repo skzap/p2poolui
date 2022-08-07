@@ -3,6 +3,7 @@ if (localStorage.getItem('isMini') == "true") {
   apiUrl = 'https://mini.p2pool.observer/api/'
   document.getElementById("checkboxApi").checked = true
 }
+let apiLocal = 'https://p2pool.0xgingi.com/api/local/'
 
 let maxShares = 2160
 let maxPayouts = 10
@@ -20,8 +21,18 @@ const apiPoolInfo = async () => {
   data.avgEffort = poolInfo.sidechain.effort.average.toFixed(2)+'%'
   data.curEffort = poolInfo.sidechain.effort.current.toFixed(2)+'%'
   data.pplnsBlocks = poolInfo.sidechain.window.blocks
+  let localPool = await (await fetch (apiLocal+'stats')).json()
+  data.hashrate_15m = localPool.hashrate_15m+' h/s'
+  data.hashrate_1h = localPool.hashrate_1h+' h/s'
+  data.hashrate_24h = localPool.hashrate_24h+' h/s'
+  data.total_hashes = localPool.total_hashes
+  data.shares_found = localPool.shares_found
+  data.average_effort = localPool.average_effort
+  data.current_effort = localPool.current_effort
+  data.connections = localPool.connections
   displayData()
 }
+
 
 const apiFoundBlocks = async (limit) => {
   let foundBlocks = await (await fetch(apiUrl+'found_blocks?limit='+limit)).json()

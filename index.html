@@ -29,6 +29,9 @@
           <li class="p-navigation__item">
             <a class="p-navigation__link" href="#stats">Stats</a>
           </li>
+          <li class="p-navigation__item">
+            <a class="p-navigation__link" href="#localpool">My Pool</a>
+          </li>
         </ul>
         <center>
           <label for="checkboxApi" style="padding-top:0px; margin-bottom: 0px">
@@ -290,7 +293,48 @@
       </div>
     </div>
   </div>
-  
+  <div class="nav" id="nav.localpool" style='display: none'>
+    <div class="p-strip">
+      <div class="row">
+        <div class="col-3">
+          <h3>Hashrate last 15M</h3>
+          <strong class="data" id="hashrate_15m"></strong>
+        </div>
+        <div class="col-3">
+          <h3>Hashrate last 1H</h3>
+          <strong class="data" id="hashrate_1h"></strong>
+        </div>
+        <div class="col-3">
+          <h3>Hashrate last 24H</h3>
+          <strong class="data" id="hashrate_24h"></strong>
+        </div>
+        <div class="col-3">
+          <h3> Total Hashes</h3>
+          <strong class="data" id="total_hashes"></strong>
+        </div>
+      </div>
+    </div>
+    <div class="p-strip" style="padding-top: 0">
+      <div class="row">
+        <div class="col-3">
+          <h3>Shares Found</h3>
+          <strong class="data" id="shares_found"></strong>
+        </div>
+        <div class="col-3">
+          <h3>Average Effort</h3>
+          <strong class="data" id="average_effort"></strong>
+        </div>
+        <div class="col-3">
+          <h3>Current Effort</h3>
+          <strong class="data" id="current_effort"></strong>
+        </div>
+        <div class="col-3">
+          <h3>Connected Miners</h3>
+          <strong class="data" id="connections"></strong>
+        </div>
+      </div>
+    </div>
+    </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js" integrity="sha512-9rxMbTkN9JcgG5euudGbdIbhFZ7KGyAuVomdQDI9qXfPply9BJh0iqA7E/moLCatH2JD4xBGHwV6ezBkCpnjRQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="p2pool.js"></script> 
 </body>
